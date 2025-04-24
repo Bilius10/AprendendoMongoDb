@@ -32,22 +32,22 @@ public class UsuarioService {
         Optional<UsuarioEntity> usuario = pegueUm(id);
 
         if(usuario.isEmpty()){
-            return null;
+            return Optional.empty();
         }
 
         usuarioRepositoy.deleteById(id);
         return usuario;
     }
 
-    public UsuarioEntity atualizar(UsuarioEntity usuarioEntity){
+    public Optional<UsuarioEntity> atualizar(UsuarioEntity usuarioEntity){
 
         Optional<UsuarioEntity> usuario = pegueUm(usuarioEntity.getId());
 
         if(usuario.isEmpty()){
-            return null;
+            return Optional.empty();
         }
 
-        return usuarioRepositoy.save(usuarioEntity);
+        return Optional.of(usuarioRepositoy.save(usuarioEntity));
     }
 
 

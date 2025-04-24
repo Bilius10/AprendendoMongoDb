@@ -20,7 +20,7 @@ public class usuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<UsuarioEntity>> pegueUm(@RequestParam String id){
+    public ResponseEntity<Optional<UsuarioEntity>> pegueUm(@PathVariable String id){
 
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.pegueUm(id));
     }
@@ -32,7 +32,7 @@ public class usuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Optional<UsuarioEntity>> delete(@RequestParam String id){
+    public ResponseEntity<Optional<UsuarioEntity>> delete(@PathVariable String id){
         
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.delete(id));
     }
@@ -40,6 +40,11 @@ public class usuarioController {
     @PostMapping
     public ResponseEntity<UsuarioEntity> save(@RequestBody UsuarioEntity usuarioEntity){
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuarioEntity));
+    }
+
+    @PutMapping
+    public ResponseEntity<Optional<UsuarioEntity>> atualizar(@RequestBody UsuarioEntity usuarioEntity){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.atualizar(usuarioEntity));
     }
 
 
